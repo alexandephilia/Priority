@@ -798,11 +798,13 @@
 
         .card {
             min-width: 0;
+            min-height: 120px;
             padding: var(--spacing-lg) var(--spacing-base) var(--spacing-lg) calc(var(--spacing-xl) * 2);
-            background: rgba(255, 255, 255, 0.588);
+            background: rgba(255, 255, 255, 0.92);
             border-radius: 16px;
             display: flex;
             flex-direction: column;
+            justify-content: flex-start;
             align-items: flex-start;
             text-align: left;
             gap: 0.35rem;
@@ -823,57 +825,52 @@
         .card--open {
             border-color: rgba(115, 147, 255, 0.25);
             box-shadow:
-                0 4px 6px -1px rgba(115, 147, 255, 0.1),
-                0 10px 15px -3px rgba(115, 147, 255, 0.08);
-        }
-
-        .card--charges {
-            border-color: rgba(199, 101, 255, 0.25);
-            box-shadow:
-                0 4px 6px -1px rgba(199, 101, 255, 0.1),
-                0 10px 15px -3px rgba(199, 101, 255, 0.08);
-        }
-
-        .card--confirm {
-            border-color: rgba(7, 188, 79, 0.25);
-            box-shadow:
-                0 4px 6px -1px rgba(7, 188, 79, 0.1),
-                0 10px 15px -3px rgba(7, 188, 79, 0.08);
-        }
-
-        .card:hover,
-        .card:active {
-            border-color: transparent;
-        }
-
-        .card--open:hover,
-        .card--open:active {
-            box-shadow:
                 0 0 0 1px rgba(115, 147, 255, 0.2),
                 0 8px 12px -3px rgba(115, 147, 255, 0.15),
                 0 15px 20px -4px rgba(115, 147, 255, 0.1);
         }
 
-        .card--charges:hover,
-        .card--charges:active {
+        .card--charges {
+            border-color: rgba(199, 101, 255, 0.25);
             box-shadow:
                 0 0 0 1px rgba(199, 101, 255, 0.2),
                 0 8px 12px -3px rgba(199, 101, 255, 0.15),
                 0 15px 20px -4px rgba(199, 101, 255, 0.1);
         }
 
-        .card--confirm:hover,
-        .card--confirm:active {
+        .card--confirm {
+            border-color: rgba(7, 188, 79, 0.25);
             box-shadow:
                 0 0 0 1px rgba(7, 188, 79, 0.2),
                 0 8px 12px -3px rgba(7, 188, 79, 0.15),
                 0 15px 20px -4px rgba(7, 188, 79, 0.1);
         }
 
+        .card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            opacity: 0.05;
+            z-index: 0;
+        }
+
+        .card--open::before {
+            background: linear-gradient(135deg, #7393FF, #ADC0FF);
+        }
+
+        .card--charges::before {
+            background: linear-gradient(135deg, #C765FF, #E2AFFF);
+        }
+
+        .card--confirm::before {
+            background: linear-gradient(135deg, #07BC4F, #67FFA4);
+        }
+
         .card__icon {
             position: absolute;
-            top: 19%;
-            left: 62px;
+            top: 16%;
+            left: 98px;
             transform: translateY(-50%);
             width: clamp(32px, 8vw, 42px);
             height: clamp(32px, 8vw, 42px);
@@ -886,36 +883,6 @@
         }
 
         .card--open .card__icon {
-            background: linear-gradient(135deg, rgba(115, 147, 255, 0.1), rgba(173, 192, 255, 0.1));
-            box-shadow:
-                0 0 0 1px rgba(115, 147, 255, 0.15),
-                0 4px 6px -1px rgba(115, 147, 255, 0.1),
-                0 2px 4px -1px rgba(115, 147, 255, 0.06);
-        }
-
-        .card--charges .card__icon {
-            background: linear-gradient(135deg, rgba(199, 101, 255, 0.1), rgba(226, 175, 255, 0.1));
-            box-shadow:
-                0 0 0 1px rgba(199, 101, 255, 0.15),
-                0 4px 6px -1px rgba(199, 101, 255, 0.1),
-                0 2px 4px -1px rgba(199, 101, 255, 0.06);
-        }
-
-        .card--confirm .card__icon {
-            background: linear-gradient(135deg, rgba(7, 188, 79, 0.1), rgba(103, 255, 164, 0.1));
-            box-shadow:
-                0 0 0 1px rgba(7, 188, 79, 0.15),
-                0 4px 6px -1px rgba(7, 188, 79, 0.1),
-                0 2px 4px -1px rgba(7, 188, 79, 0.06);
-        }
-
-        .card:hover .card__icon,
-        .card:active .card__icon {
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        .card--open:hover .card__icon,
-        .card--open:active .card__icon {
             background: linear-gradient(135deg, rgba(115, 147, 255, 0.15), rgba(173, 192, 255, 0.15));
             box-shadow:
                 0 0 0 1px rgba(115, 147, 255, 0.2),
@@ -923,8 +890,7 @@
                 0 8px 10px -5px rgba(115, 147, 255, 0.1);
         }
 
-        .card--charges:hover .card__icon,
-        .card--charges:active .card__icon {
+        .card--charges .card__icon {
             background: linear-gradient(135deg, rgba(199, 101, 255, 0.15), rgba(226, 175, 255, 0.15));
             box-shadow:
                 0 0 0 1px rgba(199, 101, 255, 0.2),
@@ -932,8 +898,7 @@
                 0 8px 10px -5px rgba(199, 101, 255, 0.1);
         }
 
-        .card--confirm:hover .card__icon,
-        .card--confirm:active .card__icon {
+        .card--confirm .card__icon {
             background: linear-gradient(135deg, rgba(7, 188, 79, 0.15), rgba(103, 255, 164, 0.15));
             box-shadow:
                 0 0 0 1px rgba(7, 188, 79, 0.2),
@@ -958,12 +923,63 @@
             color: #07BC4F;
         }
 
+        @keyframes shine {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
         .card__number {
             font-size: var(--font-2xl);
-            font-weight: 700;
-            color: #1a202c;
+            font-weight: 800;
+            color: transparent;
             line-height: 1.2;
             margin-bottom: 0.15rem;
+            position: relative;
+            z-index: 2;
+            background-clip: text;
+            -webkit-background-clip: text;
+            letter-spacing: -0.02em;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+            background-size: 200% auto;
+            animation: shine 4s ease-in-out infinite;
+        }
+
+        .card--open .card__number {
+            background-image: linear-gradient(135deg, #7393FF 0%, #ADC0FF 50%, #7393FF 100%);
+        }
+
+        .card--charges .card__number {
+            background-image: linear-gradient(135deg, #C765FF 0%, #E2AFFF 50%, #C765FF 100%);
+        }
+
+        .card--confirm .card__number {
+            background-image: linear-gradient(135deg, #07BC4F 0%, #67FFA4 50%, #07BC4F 100%);
+        }
+
+        .card__number::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: inherit;
+            filter: blur(10px);
+            opacity: 0.2;
+            z-index: -1;
+        }
+
+        @media (max-width: 480px) {
+            .card__number {
+                font-size: var(--font-xl);
+                background-size: 150% auto;
+            }
         }
 
         .card__label {
@@ -972,14 +988,57 @@
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            position: relative;
+            z-index: 2;
+        }
+
+
+
+        .card--open::after {
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="%237393FF" d="M384 480h48c11.4 0 21.9-6 27.6-15.9l112-192c5.8-9.9 5.8-22.1 .1-32.1S555.5 224 544 224H144c-11.4 0-21.9 6-27.6 15.9L48 357.1V96c0-8.8 7.2-16 16-16H181.5c4.2 0 8.3 1.7 11.3 4.7l26.5 26.5c21 21 49.5 32.8 79.2 32.8H416c8.8 0 16 7.2 16 16v32h48V160c0-35.3-28.7-64-64-64H298.5c-17 0-33.3-6.7-45.3-18.7L226.7 50.7c-12-12-28.3-18.7-45.3-18.7H64C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H87.7 384z"/></svg>');
+        }
+
+        .card--charges::after {
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="%23C765FF" d="M160 0c17.7 0 32 14.3 32 32V67.7c1.6 .2 3.1 .4 4.7 .7c.4 .1 .7 .1 1.1 .2l48 8.8c17.4 3.2 28.9 19.9 25.7 37.2s-19.9 28.9-37.2 25.7l-47.5-8.7c-31.3-4.6-58.9-1.5-78.3 6.2s-27.2 18.3-29 28.1c-2 10.7-.5 16.7 1.2 20.4c1.8 3.9 5.5 8.3 12.8 13.2c16.3 10.7 41.3 17.7 73.7 26.3l2.9 .8c28.6 7.6 63.6 16.8 89.6 33.8c14.2 9.3 27.6 21.9 35.9 39.5c8.5 17.9 10.3 37.9 6.4 59.2c-6.9 38-33.1 63.4-65.6 76.7c-13.7 5.6-28.6 9.2-44.4 11V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V445.1c-.4-.1-.9-.1-1.3-.2l-.2 0 0 0c-24.4-3.8-64.5-14.3-91.5-26.3c-16.1-7.2-23.4-26.1-16.2-42.2s26.1-23.4 42.2-16.2c20.9 9.3 55.3 18.5 75.2 21.6c31.9 4.7 58.2 2 76-5.3c16.9-6.9 24.6-16.9 26.8-28.9c1.9-10.6 .4-16.7-1.3-20.4c-1.9-4-5.6-8.4-13-13.3c-16.4-10.7-41.5-17.7-74-26.3l-2.8-.7 0 0C119.4 279.3 84.4 270 58.4 253c-14.2-9.3-27.5-22-35.8-39.6c-8.4-17.9-10.1-37.9-6.1-59.2C23.7 116 52.3 91.2 84.8 78.3c13.3-5.3 27.9-8.9 43.2-11V32c0-17.7 14.3-32 32-32z"/></svg>');
+        }
+
+        .card--confirm::after {
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%2307BC4F" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg>');
+        }
+
+        /* Remove hover effects since we made them default */
+        .card:hover,
+        .card:active {
+            transform: none;
+        }
+
+        .card:hover .card__icon,
+        .card:active .card__icon {
+            transform: translateY(-50%);
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                min-height: 100px;
+                padding: var(--spacing-base) var(--spacing-sm) var(--spacing-base) calc(var(--spacing-xl) * 1.5);
+            }
+
+            .card::after {
+                width: 20px;
+                height: 20px;
+                right: 0.75rem;
+                bottom: 0.75rem;
+            }
         }
 
         .utility-item {
+            min-height: 160px;
             padding: var(--spacing-base);
             background: white;
             border-radius: 16px;
             display: flex;
             flex-direction: column;
+            justify-content: flex-start;
             gap: 0.5rem;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1064,8 +1123,79 @@
         .utility-content {
             display: flex;
             flex-direction: column;
-            gap: 0.25rem;
+            gap: 0.75rem;
             z-index: 1;
+            width: 100%;
+            height: 100%;
+            justify-content: space-between;
+        }
+
+        .utility-header {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .utility-meta {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+            width: 100%;
+            margin-top: auto;
+            padding-top: 0.5rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .utility-trend {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-weight: 600;
+            font-size: var(--font-xs);
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+            background: rgba(0, 0, 0, 0.02);
+        }
+
+        .utility-trend--up {
+            color: #ef5350;
+            background: rgba(239, 83, 80, 0.05);
+        }
+
+        .utility-trend--down {
+            color: #4caf50;
+            background: rgba(76, 175, 80, 0.05);
+        }
+
+        .utility-status {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-size: var(--font-xs);
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+            background: rgba(0, 0, 0, 0.02);
+        }
+
+        .utility-status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #4caf50;
+        }
+
+        .utility-status-dot--warning {
+            background: #ff9800;
+        }
+
+        .utility-status-dot--danger {
+            background: #ef5350;
+        }
+
+        .utility-last-update {
+            font-size: 0.65rem;
+            color: #94a3b8;
+            margin-top: 0.25rem;
         }
 
         .utility-label {
@@ -1265,6 +1395,7 @@
             }
 
             .card {
+                min-height: 100px;
                 padding: var(--spacing-base) var(--spacing-sm) var(--spacing-base) calc(var(--spacing-xl) * 1.5);
             }
 
@@ -1310,6 +1441,7 @@
             }
 
             .utility-item {
+                min-height: 140px;
                 padding: 0.75rem;
             }
 
@@ -1437,19 +1569,20 @@
         }
 
         section:last-child .card {
+            min-height: 160px;
             padding: 1.75rem;
             text-align: left;
             align-items: flex-start;
             position: relative;
             overflow: hidden;
-            min-height: 100px;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             border: 1px solid transparent;
-            box-shadow:
-                0 4px 6px -1px rgba(0, 0, 0, 0.05),
-                0 10px 15px -3px rgba(0, 0, 0, 0.05);
+        }
+
+        section:last-child .card__progress-bar {
+            background: linear-gradient(to right, #07BC4F, #67FFA4);
         }
 
         .card--green {
@@ -1527,24 +1660,8 @@
             opacity: 0.15;
         }
 
-        .card--green {
-            background: linear-gradient(135deg, rgba(7, 188, 79, 0.05), rgba(103, 255, 164, 0.05));
-            border: 1px solid rgba(7, 188, 79, 0.25) !important;
-            box-shadow:
-                0 4px 6px -1px rgba(7, 188, 79, 0.1),
-                0 10px 15px -3px rgba(7, 188, 79, 0.08);
-        }
-
         .card--green .card__label {
             color: #07BC4F;
-        }
-
-        .card--orange {
-            background: linear-gradient(135deg, rgba(255, 152, 0, 0.05), rgba(245, 124, 0, 0.05));
-            border: 1px solid rgba(255, 152, 0, 0.25) !important;
-            box-shadow:
-                0 4px 6px -1px rgba(255, 152, 0, 0.1),
-                0 10px 15px -3px rgba(255, 152, 0, 0.08);
         }
 
         .card--orange .card__label {
@@ -1558,8 +1675,8 @@
             }
 
             section:last-child .card {
-                padding: 1rem;
-                min-height: 90px;
+                min-height: 140px;
+                padding: 1.25rem;
             }
 
             section:last-child .card__number {
@@ -1601,6 +1718,78 @@
             box-shadow:
                 0 4px 6px -1px rgba(76, 175, 80, 0.1),
                 0 10px 15px -3px rgba(76, 175, 80, 0.08);
+        }
+
+        .card__content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+        }
+
+        .card__meta {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-top: 0.5rem;
+            font-size: var(--font-xs);
+            color: #64748b;
+        }
+
+        .card__meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .card__meta-item i {
+            font-size: 0.75rem;
+        }
+
+        .card__progress {
+            width: 100%;
+            height: 4px;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 2px;
+            margin-top: 0.5rem;
+            overflow: hidden;
+        }
+
+        .card__progress-bar {
+            height: 100%;
+            border-radius: 2px;
+            transition: width 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .card--open .card__progress-bar {
+            background: linear-gradient(to right, #7393FF, #ADC0FF);
+            width: 75%;
+        }
+
+        .card--charges .card__progress-bar {
+            background: linear-gradient(to right, #C765FF, #E2AFFF);
+            width: 25%;
+        }
+
+        .card--confirm .card__progress-bar {
+            background: linear-gradient(to right, #07BC4F, #67FFA4);
+            width: 100%;
+        }
+
+        .card__info {
+            font-size: var(--font-xs);
+            color: #64748b;
+            margin-top: 0.25rem;
+        }
+
+        .card__upcoming {
+            margin-top: 0.5rem;
+            font-size: var(--font-xs);
+            color: #64748b;
+        }
+
+        .card__upcoming-date {
+            color: #1a202c;
+            font-weight: 600;
         }
     </style>
 </head>
@@ -1651,6 +1840,10 @@
                     </div>
                     <span class="card__number">3</span>
                     <span class="card__label">Open</span>
+                    <div class="card__progress">
+                        <div class="card__progress-bar"></div>
+                    </div>
+                    <span class="card__info">Progress</span>
                 </div>
                 <div class="card card--charges animate slideInLeft delay-4">
                     <div class="card__icon">
@@ -1658,6 +1851,10 @@
                     </div>
                     <span class="card__number">1</span>
                     <span class="card__label">Charges</span>
+                    <div class="card__progress">
+                        <div class="card__progress-bar"></div>
+                    </div>
+                    <span class="card__info">Progress</span>
                 </div>
                 <div class="card card--confirm animate slideInLeft delay-5">
                     <div class="card__icon">
@@ -1665,6 +1862,10 @@
                     </div>
                     <span class="card__number">4</span>
                     <span class="card__label">Confirm</span>
+                    <div class="card__progress">
+                        <div class="card__progress-bar"></div>
+                    </div>
+                    <span class="card__info">Progress</span>
                 </div>
             </div>
         </section>
@@ -1674,34 +1875,73 @@
             <div class="utility-grid">
                 <div class="utility-item utility-item--electricity animate scaleIn delay-4">
                     <div class="utility-content">
-                        <span class="utility-label">Electricity</span>
-                        <div class="utility-icon-wrapper">
-                            <div class="utility-icon utility-icon--electricity">
-                                <i class="fas fa-bolt"></i>
+                        <div class="utility-header">
+                            <span class="utility-label">Electricity</span>
+                            <div class="utility-icon-wrapper">
+                                <div class="utility-icon utility-icon--electricity">
+                                    <i class="fas fa-bolt"></i>
+                                </div>
+                                <span class="utility-value">3</span>
                             </div>
-                            <span class="utility-value">3</span>
+                            <span class="utility-last-update">Updated 2h ago</span>
+                        </div>
+                        <div class="utility-meta">
+                            <div class="utility-trend utility-trend--up">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>12%</span>
+                            </div>
+                            <div class="utility-status">
+                                <div class="utility-status-dot utility-status-dot--warning"></div>
+                                <span>High</span>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="utility-item utility-item--gas animate scaleIn delay-5">
                     <div class="utility-content">
-                        <span class="utility-label">Gas</span>
-                        <div class="utility-icon-wrapper">
-                            <div class="utility-icon utility-icon--gas">
-                                <i class="fas fa-fire"></i>
+                        <div class="utility-header">
+                            <span class="utility-label">Gas</span>
+                            <div class="utility-icon-wrapper">
+                                <div class="utility-icon utility-icon--gas">
+                                    <i class="fas fa-fire"></i>
+                                </div>
+                                <span class="utility-value">1</span>
                             </div>
-                            <span class="utility-value">1</span>
+                            <span class="utility-last-update">Updated 1h ago</span>
+                        </div>
+                        <div class="utility-meta">
+                            <div class="utility-trend utility-trend--down">
+                                <i class="fas fa-arrow-down"></i>
+                                <span>8%</span>
+                            </div>
+                            <div class="utility-status">
+                                <div class="utility-status-dot"></div>
+                                <span>Normal</span>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="utility-item utility-item--water animate scaleIn delay-5">
                     <div class="utility-content">
-                        <span class="utility-label">Water</span>
-                        <div class="utility-icon-wrapper">
-                            <div class="utility-icon utility-icon--water">
-                                <i class="fas fa-droplet"></i>
+                        <div class="utility-header">
+                            <span class="utility-label">Water</span>
+                            <div class="utility-icon-wrapper">
+                                <div class="utility-icon utility-icon--water">
+                                    <i class="fas fa-droplet"></i>
+                                </div>
+                                <span class="utility-value">1</span>
                             </div>
-                            <span class="utility-value">1</span>
+                            <span class="utility-last-update">Updated 30m ago</span>
+                        </div>
+                        <div class="utility-meta">
+                            <div class="utility-trend utility-trend--up">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>5%</span>
+                            </div>
+                            <div class="utility-status">
+                                <div class="utility-status-dot"></div>
+                                <span>Normal</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1715,12 +1955,42 @@
                     <div class="card__content">
                         <span class="card__number">4</span>
                         <span class="card__label">Confirmed</span>
+                        <div class="card__meta">
+                            <div class="card__meta-item">
+                                <i class="fas fa-check"></i>
+                                <span>Complete</span>
+                            </div>
+                            <div class="card__meta-item">
+                                <i class="fas fa-calendar-check"></i>
+                                <span>This Week</span>
+                            </div>
+                        </div>
+                        <div class="card__progress">
+                            <div class="card__progress-bar" style="width: 100%"></div>
+                        </div>
                     </div>
                 </div>
                 <div class="card card--orange">
                     <div class="card__content">
                         <span class="card__number">20</span>
                         <span class="card__label">Scheduled</span>
+                        <div class="card__meta">
+                            <div class="card__meta-item">
+                                <i class="fas fa-clock"></i>
+                                <span>In Progress</span>
+                            </div>
+                            <div class="card__meta-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>Next Month</span>
+                            </div>
+                        </div>
+                        <div class="card__progress">
+                            <div class="card__progress-bar" style="width: 45%"></div>
+                        </div>
+                        <div class="card__upcoming">
+                            <span>Next: </span>
+                            <span class="card__upcoming-date">Mar 15, 2024</span>
+                        </div>
                     </div>
                 </div>
             </div>
