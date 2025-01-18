@@ -621,7 +621,7 @@
         }
 
         .top-bar.scrolled .top-bar__logo {
-            height: 42px;
+            height: 80px;
             transform: scale(0.92);
             border-radius: 20px;
         }
@@ -1827,6 +1827,39 @@
         .card__upcoming-date {
             color: #1a202c;
             font-weight: 600;
+        }
+
+        .card--green .card__number {
+            color: transparent;
+            background-clip: text;
+            -webkit-background-clip: text;
+            letter-spacing: -0.02em;
+            filter: drop-shadow(0 2px 4px rgba(7, 188, 79, 0.2));
+            background-size: 200% auto;
+            animation: shine 4s ease-in-out infinite;
+            background-image: linear-gradient(135deg, #07BC4F 0%, #67FFA4 50%, #07BC4F 100%);
+        }
+
+        .card--orange .card__number {
+            color: transparent;
+            background-clip: text;
+            -webkit-background-clip: text;
+            letter-spacing: -0.02em;
+            filter: drop-shadow(0 2px 4px rgba(255, 152, 0, 0.2));
+            background-size: 200% auto;
+            animation: shine 4s ease-in-out infinite;
+            background-image: linear-gradient(135deg, #FF9800 0%, #FFB74D 50%, #FF9800 100%);
+        }
+
+        .card--green .card__number::after,
+        .card--orange .card__number::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: inherit;
+            filter: blur(10px);
+            opacity: 0.2;
+            z-index: -1;
         }
     </style>
 </head>
